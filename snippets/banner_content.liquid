@@ -1,0 +1,27 @@
+<div class="banner_content--container">
+
+    <div class="banner_image--container">
+        {% if banner_image != blank %}
+             {{ banner_image | image_url: width: 1200 | image_tag }}
+        {% else %}
+            {{ 'lifestyle-2' | placeholder_svg_tag: 'absolute' }} 
+        {% endif %}
+    </div>
+
+    <div class="banner_content--blocks absolute">
+        {% for block in blocks %}
+            {% case block.type %}
+                {% when 'title' %}
+                    <h1 class="banner_title">{{ block.settings.title }}</h1>
+                {% when 'content' %}
+                    <div class="banner_content">
+                        {{ block.settings.content }}
+                    </div>
+                {% when 'button' %}
+                    {% if block.settings.button_label != blank %}
+                        {% render '_button', class:'banner-button cta-button', link: block.settings.button_url, label: block.settings.button_label %}
+                    {% endif %}
+            {% endcase %}
+        {% endfor %}
+    </div>
+</div>

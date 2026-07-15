@@ -1,0 +1,40 @@
+<div class="banner_header--container">
+
+    {% comment %}
+       START: This will be visible only on mobile
+    {% endcomment %}  
+    <button class="mobile-menu-button close">
+        {% render 'mobile-menu-icon' %}
+        {% render 'close-icon' %}
+    </button>
+
+    <div class="mobile-menu-container">
+        <div class="banner-announcement">{{ announcement }}</div>
+        {%  if button_label != blank %} 
+        <a class="banner-button" href="{{ button_url }}">
+            <span>
+                {{ button_label }}
+                {% render 'arrow' %}
+            </span>
+        </a>
+        {% endif %}
+    </div>
+
+
+    {% comment %}
+       END: This will be visible only on mobile
+    {% endcomment %}  
+
+
+    {% if logo != blank %}
+        <div style="max-width: {{ logo_width }}px;" class="banner-logo">
+            {{ logo | image_url: width: 400 | image_tag: width: logo_width }}
+        </div>
+    {% else %}
+        <span>{{ logo_text }}</span>
+    {% endif %}
+    <div class="banner-announcement desktop">{{ announcement }}</div>
+    {%  if button_label != blank %} 
+        {% render '_button', class:'banner-button desktop', link: button_url, label: button_label %}
+    {% endif %}
+</div>

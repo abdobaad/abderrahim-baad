@@ -1,0 +1,138 @@
+<section id="banner-section-{{ section.id }}">
+    <banner-section class="banner--container">
+        {% render 'banner_header',
+            logo: section.settings.logo,
+            logo_text: section.settings.logo_text,
+            logo_width: section.settings.logo_width,
+            announcement: section.settings.announcement,
+            button_label: section.settings.button_label,
+            button_url: section.settings.button_url
+        %}
+
+        {% render 'banner_content', banner_image: section.settings.banner_image, blocks: section.blocks %}
+        {% render 'banner_footer' content: section.settings.footer_content %}
+    </banner-section>
+</section>
+
+{{ 'banner.css' | asset_url | stylesheet_tag }}
+{% schema %}
+{
+    "name": "Banner",
+    "settings": [
+        {
+            "type": "header",
+            "content": "Banner Header"
+        },
+        {
+            "type": "image_picker",
+            "id": "logo",
+            "label": "Logo image"
+        },
+        {
+            "type": "text",
+            "id": "logo_text",
+            "label": "Logo",
+            "default": "Tisso Vision"
+        },
+        {
+            "type": "range",
+            "id": "logo_width",
+            "min": 100,
+            "max": 300,
+            "step": 10,
+            "label": "Logo width",
+            "default": 200
+        },
+        {
+            "type": "text",
+            "id": "announcement",
+            "label": "Announcement",
+            "default": "Find the ideal gift for your loved ones."
+        },
+        {
+            "type": "text",
+            "id": "button_label",
+            "label": "Button Label",
+            "default": "Choose gift"
+        },
+        {
+            "type": "url",
+            "id": "button_url",
+            "label": "Button Link"
+        },
+        {
+            "type": "header",
+            "content": "Banner Content"
+        },
+        {
+            "type": "image_picker",
+            "id": "banner_image",
+            "label": "Banner image"
+        },
+        {
+            "type": "header",
+            "content": "Banner Footer"
+        },
+        {
+            "type": "richtext",
+            "id": "footer_content",
+            "label": "Content",
+            "default": "<p>SUSTAINABLE, ETHICALLY MADE CLOTHES IN SIZES XXS TO 6XL</p>"
+        }
+    ],
+
+    "blocks": [
+        {
+            "name": "Title",
+            "type": "title",
+            "limit": 1,
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Title",
+                    "default": "The Gift Guide"
+                }
+            ]
+        },
+        {
+            "name": "Content",
+            "type": "content",
+            "limit": 1,
+            "settings": [
+                {
+                    "type": "richtext",
+                    "id": "content",
+                    "label": "Content",
+                    "default": "<p>Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season.</p>"
+                }
+            ]
+        },
+        {
+            "name": "button",
+            "type": "button",
+            "limit": 1,
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "button_label",
+                    "label": "Button Label",
+                    "default": "Shop now"
+                },
+                {
+                    "type": "url",
+                    "id": "button_url",
+                    "label": "Button Link"
+                }
+            ]
+        }
+    ],
+
+
+    "presets": [
+        {
+            "name": "Banner"
+        }
+    ]
+}
+{% endschema %}
